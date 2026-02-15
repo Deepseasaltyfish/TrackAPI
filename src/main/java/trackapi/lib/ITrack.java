@@ -21,5 +21,5 @@ public interface ITrack {
 	 * @param distance - Distanced traveled in meters
 	 * @return The new position of the entity or bogey
 	 */
-	public Vec3d getNextPosition(Vec3d currentPosition, Vec3d motion);
+	public PathingContext getNextPosition(PathingContext currentPosition, Vec3d motion);
 }

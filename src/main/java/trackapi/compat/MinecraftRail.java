@@ -8,10 +8,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import trackapi.lib.Gauges;
 import trackapi.lib.ITrack;
+import trackapi.lib.PathingContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Compat for Minecraft Vanilla Rail.
+ */
 public class MinecraftRail implements ITrack {
 	private static Map<EnumRailDirection, Vec3d> vectors = new HashMap<>();
 	private static Map<EnumRailDirection, Vec3d> centers = new HashMap<>();
@@ -62,11 +66,11 @@ public class MinecraftRail implements ITrack {
 	}
 
 	@Override
-	public Vec3d getNextPosition(Vec3d currentPosition, Vec3d motion) {
+	public PathingContext getNextPosition(PathingContext currentPosition, Vec3d motion) {
 		Vec3d trackMovement = vectors.get(direction);
 		Vec3d trackCenter = centers.get(direction);
 
-		Vec3d posRelativeToCenter = currentPosition.subtractReverse(new Vec3d(pos).add(trackCenter));
+		Vec3d posRelativeToCenter = currentPosition.pos.subtractReverse(new Vec3d(pos).add(trackCenter));
 		double distanceToCenter = posRelativeToCenter.lengthVector();
 
 		// Determine if trackMovement should be positive or negative as relative to block center
@@ -79,7 +83,7 @@ public class MinecraftRail implements ITrack {
 		newPosition = newPosition.add(trackMovement.scale(trackPosMotionInverted ? -distanceToCenter : distanceToCenter));
 		// Move new pos along track alignment
 		newPosition = newPosition.add(trackMovement.scale(trackMotionInverted ? -motion.lengthVector() : motion.lengthVector()));
-		return newPosition;
+		return new PathingContext(newPosition, 0);
 	}
 
 	public static boolean isRail(World world, BlockPos pos) {
