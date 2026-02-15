@@ -19,14 +19,30 @@ public class PathingContext {
      */
     public double roll;
 
+    public PathingContext(Vec3d pos) {
+        this.pos = pos;
+    }
+
     public PathingContext(Vec3d pos, double roll) {
         this.pos = pos;
         this.roll = roll;
     }
 
-    public PathingContext(Vec3d pos, double roll, Vec3d deltaMovement) {
+    public PathingContext(Vec3d pos, Vec3d deltaMovement, double roll) {
         this.pos = pos;
         this.roll = roll;
         this.deltaMovement = deltaMovement;
+    }
+
+    public PathingContext(PathingContext pathingContext) {
+        this (
+                pathingContext.pos,
+                pathingContext.deltaMovement,
+                pathingContext.roll
+        );
+    }
+
+    public PathingContext clone() {
+        return new PathingContext(this);
     }
 }
