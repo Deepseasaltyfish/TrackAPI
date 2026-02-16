@@ -17,24 +17,16 @@ public class PathingContext {
     public final Vec3d pos;
 
     /**
-     * Vector between nextPosition and currentPosition.
+     * Distance between nextPosition and currentPosition.
      */
-    public final Vec3d deltaMovement;
+    public final double deltaMovement;
 
     /**
      * nextRoll or currentRoll.
      */
     public final double roll;
 
-    public PathingContext(Vec3d pos) {
-        this(pos, Vec3d.ZERO, 0);
-    }
-
-    public PathingContext(Vec3d pos, double roll) {
-        this(pos, Vec3d.ZERO, roll);
-    }
-
-    public PathingContext(Vec3d pos, Vec3d deltaMovement, double roll) {
+    public PathingContext(Vec3d pos, double deltaMovement, double roll) {
         this.pos = pos;
         this.roll = roll;
         this.deltaMovement = deltaMovement;
