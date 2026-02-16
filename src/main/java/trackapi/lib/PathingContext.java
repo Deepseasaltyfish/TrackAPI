@@ -48,8 +48,7 @@ public class PathingContext {
         );
     }
 
-    @Override
-    public PathingContext clone() {
+    public PathingContext copy() {
         return new PathingContext(this);
     }
 }
