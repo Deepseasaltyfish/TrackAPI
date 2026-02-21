@@ -2,9 +2,6 @@ package trackapi.lib;
 
 import net.minecraft.util.math.Vec3d;
 
-import javax.annotation.Nullable;
-import java.util.function.Consumer;
-
 /**
  * Packaged variables for pathing rail.
  * Notice that this uses minecraft Vec3d.
@@ -32,15 +29,15 @@ public class PathingContext {
         this.deltaMovement = deltaMovement;
     }
 
-    private PathingContext(PathingContext pathingContext) {
-        this (
-                pathingContext.pos,
-                pathingContext.deltaMovement,
-                pathingContext.roll
-        );
-    }
-
-    public PathingContext copy() {
-        return new PathingContext(this);
-    }
+//    private PathingContext(PathingContext pathingContext) {
+//        this (
+//                pathingContext.pos,
+//                pathingContext.deltaMovement,
+//                pathingContext.roll
+//        );
+//    }
+//
+//    public PathingContext copy() {
+//        return new PathingContext(this);
+//    }
 }
