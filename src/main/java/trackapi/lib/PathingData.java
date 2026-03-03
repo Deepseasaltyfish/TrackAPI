@@ -6,29 +6,34 @@ import net.minecraft.util.math.Vec3d;
  * Mutable data storaging object used by stocks to query data
  */
 public class PathingData {
-    private Vec3d pos;
+    private Vec3d vanillaPos;
     private double roll;
+    private double deltaMovement;
 
-    public PathingData(Vec3d pos, double roll) {
-        this.pos = pos;
+    public PathingData(Vec3d vanillaPos, double roll, double deltaMovement) {
+        this.vanillaPos = vanillaPos;
         this.roll = roll;
+        this.deltaMovement = deltaMovement;
     }
 
-    public Vec3d getPos() {
-        return pos;
+    public Vec3d getVanillaPos() {
+        return vanillaPos;
     }
 
-    public PathingData setPos(Vec3d pos) {
-        this.pos = pos;
-        return this;
+    public void setVanillaPos(Vec3d pos) {
+        this.vanillaPos = pos;
+        this.deltaMovement += this.vanillaPos.distanceTo(pos);
     }
 
     public double getRoll() {
         return roll;
     }
 
-    public PathingData setRoll(double roll) {
+    public void setRoll(double roll) {
         this.roll = roll;
-        return this;
+    }
+
+    public double getDeltaMovement() {
+        return deltaMovement;
     }
 }
